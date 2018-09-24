@@ -1,0 +1,93 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace _1_лаба
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string a;
+            double A;
+            string b;
+            double B;
+            string c;
+            double C;
+            double Discr;
+            double x1;
+            double x2;
+            int F = 1;
+
+
+            while (F == 1)
+            {
+                    Console.WriteLine("Введите коэффициенты A, B, C");
+                    do
+                    {
+                        try
+                        {
+                            a = Console.ReadLine();
+                            A = Convert.ToDouble(a);
+                            b = Console.ReadLine();
+                            B = Convert.ToDouble(b);
+                            c = Console.ReadLine();
+                            C = Convert.ToDouble(c);
+                            break;
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Ошибка при вводе данных");
+                            Console.WriteLine("Повторите ввод данных");
+                        }
+                    }
+                    while (true);
+
+                    if ((A == 0) && (B == 0) && (C == 0))
+                    {
+                        Console.WriteLine("Бесконечное мн-во корней");
+                        F = 0;
+                        break;
+                    }
+
+                    if ((A == 0) && (B == 0))
+                    {
+                        Console.WriteLine("Нет решений");
+                        F = 0;
+                        break;
+                    }
+                    if (A == 0)
+                    {
+                        x1 = (-C) / B;
+                        Console.WriteLine("Один корень: {0,3:f2}", x1);
+                        F = 0;
+                        break;
+                    }
+
+                    Discr = B * B - 4 * A * C;
+
+
+                    if (Discr < 0)
+                    {
+                        Console.WriteLine("Нет действительных корней");
+                        F = 0;
+                    }
+                    if (Discr == 0)
+                    {
+                        x1 = (-B) / (2 * A);
+                        Console.WriteLine("Один корень: {0,3:f2}", x1);
+                        F = 0;
+                    }
+                    if (Discr > 0)
+                    {
+                        x1 = ((-B) + Math.Sqrt(Discr)) / (2 * A);
+                        x2 = ((-B) - Math.Sqrt(Discr)) / (2 * A);
+                        Console.WriteLine("Два корня: {0,3:f2} и {1,3:f2}", x1, x2);
+                        F = 0;
+                    }
+            }
+            Console.ReadKey();
+        }
+    }
+}
